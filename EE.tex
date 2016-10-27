@@ -139,26 +139,30 @@
     inefficient, due to the number of trial divisions that have to be performed
     for larger integers. There exists however one crucial theorem that provides
     an optimisation to this test:
-    \begin{theorem}
+    \begin{theorem} \label{th:prime_factors_less_than_root}
         All composites have a prime factor less than or equal to their square
         root. Formally:\\
         $$\forall \text{ composite } n \: \exists \text{ prime } p:p|n \: \& \: p \leq \sqrt{n}$$
     \end{theorem}
     %
     This means that is enough to check all primes less than $\sqrt{n}$ for
-    whether they divide $n$, to ensure that $n$ is prime. Here is a proof by
-    contradiction to this theorem:
-    %
-    \begin{proof}
-    Since p is composite, $p=ab$ for some integers $1<a<n$, $1<b<n$.\\
-    Suppose $a>\sqrt{n}$ and $b>\sqrt{n}$. Then, $ab>n \Rightarrow n>n$. Contradiction.\\
-    Therefore, $a \leq \sqrt{n}$ or $a \leq \sqrt{n}$. \\
+    whether they divide $n$, to ensure that $n$ is prime. 
+    
+    But why is that? Let us examine a composite number $n$
+
+    Since $n$ is composite, $n=ab$ for some integers $a, b$ such that $1<a<n$
+    and $1<b<n$.\\
+    Suppose $a>\sqrt{n}$ and $b>\sqrt{n}$. Then, $ab>n$ which implies that
+    $n>n$. \\
+    This is obviously false and so the assumption that both $a,b > \sqrt{n}$
+    is false as well.
+
+    Therefore, $a \leq \sqrt{n}$ or $b \leq \sqrt{n}$. \\
     Suppose (without loss of generality) that $a \leq \sqrt{n}$.\\
-    There exists prime $p: p|a$. Note, that if a is prime, $p = a$, but this
-    does not affect the proof\\
-    $p|a\:\&\:a|n \Rightarrow p|n$. But $p|a \Rightarrow p \leq a \leq \sqrt{n}$\\
-    \end{proof}
-    %
+    There exists prime $p: p|a$. (Note, that if $a$ is prime, $p = a$, but this
+    does not affect the proof.)\\
+    $p|a$ and $a|n \implies p|n$. But $p|a$, Therefore,  $p \leq a \leq \sqrt{n}$\\
+    
     Even with this optimization, trial division is still slow for very large
     numbers 
 
