@@ -70,56 +70,64 @@
         
 
     \subsection{Modular Arithmetic}
-        An understanding of linear congruences and modular arithmetic is
-        necessarry for the following proofs.
+    An understanding of linear congruences and modular arithmetic is
+    necessarry for the following proofs.
 
-        Linear congruences have to do with division remainders. When two
-        integers $a, b$ are congruent modulo a third integer $m$ they leave the
-        same remainder when divided by $m$. Formally:
-        %
-        \begin{equation}\label{eq:congr_def_long}
-            \begin{gathered}
-                a \equiv b (mod\: m) \\
-                \iff \exists\ l,m,r \in \mathbb{Z}: a = qm + r\ and\ b = lm + r
-            \end{gathered}
-        \end{equation}
-        %
-        An alternate definition is that 
-        \begin{equation*}
-            a \equiv b (mod\: m) \iff m | a-b
-        \end{equation*}
-        These two definitions are equivalent
-        \begin{proof}
-            Starting from (\ref{eq:congr_def_long})
-            \begin{equation*}
-                \left. 
-                    \begin{aligned}
-                        a = qm + r\\ 
-                        b = lm + r
-                    \end{aligned}
-                \right\}
-                (a - b) = (q-l)\times m :\: (q-l) \in \mathbb{Z}\quad \iff m | (a-b)
-            \end{equation*}
-        \end{proof}
+    Linear congruences have to do with division remainders. When two
+    integers $a, b$ are congruent modulo a third integer $m$ they leave the
+    same remainder when divided by $m$. Formally:
+    %
+    \begin{equation}\label{eq:congr_def_long}
+        \begin{gathered}
+            a \equiv b \pmod{m} \\
+            \iff \exists\ l,m,r \in \mathbb{Z}: a = qm + r\ and\ b = lm + r
+        \end{gathered}
+    \end{equation}
+    %
 
-        When performing arithmetic inside a modulo, addition, subtraction, and
-        multiplication behave exactly as one would expect. Namely, given
-        $a\equiv b\pmod{m}$ and $c\equiv d\pmod{m}$:
-        \begin{align*}
-            a + c &\equiv b + d \pmod{m}\\
-            a - c &\equiv b - d \pmod{m}\\
-            ka 	  &\equiv kb \pmod{m}\ \forall k \in \mathbb{Z} 
-        \end{align*}
+    So, for example, $4 \equiv 7 \pmod{3}$ since $4 \div 3 = 0$ with
+    a remainder of $1$ and $7 \div 3 = 2$, again, with a remainder of $2$.
 
-        Division, however, must be treated differently:
-        \begin{gather*}
-            \text{given } d = gcd(k, m)\\
-            kx \equiv ky \pmod{m} \implies x \equiv y \pmod{\frac{m}{d}}
-        \end{gather*}
-        Note, that if $gcd(k, m) = 1$ 
-        \begin{equation*}
-            kx \equiv ky \pmod{m} \implies x \equiv y \pmod{m}
-        \end{equation*}
+    An alternate definition is that
+    \begin{equation*}
+        a \equiv b \pmod{m} \iff m | a-b
+    \end{equation*}
+
+    These two definitions are equivalent. This can be shown starting from 
+    \eqref{eq:congr_def_long}
+%
+    \begin{equation*}
+        \left. 
+            \begin{aligned}
+                a = qm + r\\ 
+                b = lm + r
+            \end{aligned}
+        \right\}
+        \text{Therefore, }
+        (a - b) = (q-l)\times m :\: (q-l) \in \mathbb{Z}\quad
+    \end{equation*}
+    Which is equivalent to $m | (a-b)$
+
+    When performing arithmetic inside a modulo, addition, subtraction, and
+    multiplication behave exactly as one would expect. Namely, given
+    $a\equiv b\pmod{m}$ and $c\equiv d\pmod{m}$:
+    \begin{align*}
+        a + c &\equiv b + d \pmod{m}\\
+        a - c &\equiv b - d \pmod{m}\\
+        ka 	  &\equiv kb \pmod{m}\ \forall k \in \mathbb{Z} 
+    \end{align*}
+
+    Division, however, must be treated using different rules. These will be
+    referred to as the \emph{Cancellation Laws}:
+    \begin{gather*}
+        \text{Given } d = gcd(k, m)\\
+        kx \equiv ky \pmod{m} \implies x \equiv y \pmod{\frac{m}{d}}
+    \end{gather*}
+    Note, that if $gcd(k, m) = 1$, i.e. if we are dividing by a number
+    relatively prime to the modulo, this simplifies to:
+    \begin{equation*}
+        kx \equiv ky \pmod{m} \implies x \equiv y \pmod{m}
+    \end{equation*}
 
 
 \section{Primality tests}
@@ -228,15 +236,15 @@
     necessarily composite since Fermat's theorem holds for all primes.
 
 \section{RSA encryption}
-    RSA is currently, one of the most popular encryption systems in the world.
-    It belongs to a category of encryption systems known as public-private key.
-    This means, that it allows two users to exchange information securely,
-    without having to exchange a shared encryption key beforehand, as it would
-    be required by classical encryption systems such as Caesar or substitution
-    ciphers. 
+RSA is currently, one of the most popular encryption systems in the world.
+It belongs to a category of encryption systems known as public-private key.
+This means, that it allows two users to exchange information securely,
+without having to exchange a shared encryption key beforehand, as it would
+be required by classical encryption systems such as Caesar or substitution
+ciphers. 
 
-    The system is based on the theory of congruences, and, specifically, on
-    Euler's Theorem.
+The system is based on the theory of congruences, and, specifically, on
+Euler's Theorem.
 
     \subsection{The Euler $\phi$-function}
     This function is necessary for Euler's theorem and, subsequently, RSA
