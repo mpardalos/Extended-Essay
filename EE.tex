@@ -30,6 +30,38 @@
 \section{Introduction}
 
 \section{Divisibility}
+    \subsection{Prime numbers}
+    Prime numbers are one of the most fundamental concepts in number theory. A
+    prime number is defined as an integer that can only be exactly divided by
+    $1$ and itself.
+
+    An interesting property of prime numbers is that there is an infinite number
+    of them. 
+    \begin{theorem}[Euclid's Theorem]
+        The set of all prime numbers is infinite.
+    \end{theorem}
+%
+    This was was shown by Euclid in his work \emph{Elements}, in a
+    particularly elegant proof:
+
+    Suppose the number of primes is finite. Let us label them $p_1, p_2, ...,
+    p_n$. Then, consider the numbers $P = p_1\times p_2 ... \times p_n$ and 
+    $q = P + 1$. There are now two possible cases regarding $P$ and $q$:
+    \begin{enumerate}[label=\alph*)]
+        \item $q$ is prime and therefore there is a prime ($q$) that is not
+            contained in the initial list, which supposedly contained all
+            primes, or
+        \item $q$ is not prime and there exists some prime $p$ which divides
+            $q$. If $p$ were in the list then it would also divide $P$. But that
+            would mean that it would also divide the difference of $P$ and $q$,
+            which is $P - q = P - (P + 1) = 1$. But no prime divides $1$.
+            Therefore, $p$ does not divide $P$ and so is not in the original
+            list.
+    \end{enumerate}
+    In both cases, there exists a prime number which is not contained in the
+    original list. This means that it is not possible to create a (finite) list
+    of all prime numbers since any such list will be incomplete.
+        
 
     \subsection{Modular Arithmetic}
         An understanding of linear congruences and modular arithmetic is
