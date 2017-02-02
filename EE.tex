@@ -10,8 +10,11 @@
 \usepackage[margin=1in]{geometry}
 \usepackage{hyperref}
 \usepackage{enumitem}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
 
 \graphicspath{ {media/} } 
+
 
 \setlength{\parskip}{1em}
 \setlength{\parindent}{0em}
@@ -33,8 +36,69 @@
 \maketitle
 
 \tableofcontents
+\newpage
 
 \section{Introduction}
+    People have always wanted to exchange secret messages. From ancient times, methods such
+    as the caesar cipher --- which substitutes each letter in a message with the one a
+    number of letters forward in the alphabet --- have been used to achieve that goal, and
+    were the first steps in the study of cryptography. These methods have all had a shared
+    characteristic: they needed their users to share a secret key.
+
+    In modern cryptography, however, it is often necessary to exchange messages without
+    having the chance of exchanging such a key; think encrypting a password entered into a
+    website you are visiting for the first time. It is out of this necessity that the idea
+    of public key cryptography was born. What this allowed was for two parties to exchange
+    messages securely without ever having to exchange any secret information. Even if a
+    third party were to listen in on all communications between them, they would still be
+    unable to understand the messages they were exchanging.
+
+    The main idea behind public key cryptography is that encryption and decryption don't
+    have to use the exact same key: there can be a pair of keys, one used for encryption and
+    the other for decryption. Say Alice wants to send a message to Bob and they each have an
+    encryption key and a decryption key. Bob can publicly share his encryption key which
+    Alice will then use to encrypt the message she wants to send, and send the encrypted
+    message to Bob. When he receives it, he can use his decryption key to decrypt the
+    message. Because of the way they are used, the encryption key is often called the
+    \emph{public key} and the decryption key the \emph{private key}
+
+    \begin{figure}[h!] 
+    \centering
+        \begin{tikzpicture}[>=stealth]
+            \tikzstyle{character}=[rectangle, draw, minimum height=1cm, minimum width=2cm];
+
+            \node (A) [character] {Alice};
+            \node (B) [character, right=10cm] {Bob};
+            \draw[->, thick] (B) -- node[above]{Bob's public key} (A);
+        \end{tikzpicture}
+        
+        \vspace{1cm}
+        Alice encrypts message using Bob's public key
+        \vspace{1cm}
+
+        \begin{tikzpicture}[>=stealth]
+            \tikzstyle{character}=[rectangle, draw, minimum height=1cm, minimum width=2cm];
+
+            \node (A) [character] {Alice};
+            \node (B) [character, right=10cm] {Bob};
+            \draw[->, thick] (A) -- node[above]{Encrypted message} (B);
+        \end{tikzpicture}
+
+        \vspace{1cm}
+        Bob decrypts message using his private key
+        \vspace{1cm}
+    \end{figure}
+
+    Even if someone were to incercept both communications, they would still have no access
+    to the original message
+
+    In the essay I will focus on a particular method of public key cryptography called RSA,
+    which is one of the most widely used today. This method is heavily based on modular
+    arithmetic and the theory of congruences, as well as Euler's theorem. I will be
+    exploring all of those topics and proving some of the more important theorems. In
+    addition to the encryption process itself I will also cover the way in which the keys
+    used in the encryption are generated.
+
 
 \section{Divisibility}
     \subsection{Prime numbers}
@@ -268,21 +332,21 @@ ciphers.
 The system is based on the theory of congruences, and, specifically, on
 Euler's Theorem.
 
-    \subsection{The Euler phi-function}
-    This function is necessary for Euler's theorem and, subsequently, RSA
-    encryption. The definition of the
-    function is quite simple.
+    \subsection{The Euler totient function}
+    This function is necessary for Euler's theorem and, subsequently, RSA encryption. The
+    definition of the function is quite simple.
     \begin{definition}
-        $\phi(n)$ is defined as the \emph{number} of integers less than or equal
-        to $n$ that are relatively prime to $n$. By convention, $\phi(1) = 1$.
+        $\phi(n)$ is defined as the \emph{number} of integers less than or equal to $n$ that
+        are relatively prime to $n$. By convention, $\phi(1) = 1$.
     \end{definition}
     So, for example, $\phi(10) = 4$, $\phi(25) = 20$.
 
-    A quick conclusion that can be drawn is that, for prime $n$, $\phi(n) = n -
-    1$, since all integers less than or equal to $n$, aside from $1$ and $n$
-    itself, are relatively prime to $n$.
+    A quick conclusion that can be drawn is that, for prime $n$, $\phi(n) = n - 1$, since
+    all integers less than or equal to $n$, aside from $1$ and $n$ itself, are relatively
+    prime to $n$.
 
     \subsection{Euler's Theorem}
+    
     \subsection{Definitions \& Terminology}
     Given here are some terms and definitions that will be used:
     %
@@ -371,6 +435,7 @@ Euler's Theorem.
                 & \equiv M \pmod{n}
         \end{align*}
     \end{proof}
+
 
 \end{document}
 
