@@ -252,6 +252,7 @@
 
            
     \subsection{Fermat test}
+    \label{sec:fermat}
 
         \subsubsection{Fermat's Little Theorem}
         Fermat's theorem (not to be confused with Fermat's \emph{last} theorem, its better known
@@ -423,6 +424,48 @@ The system is based on the theory of congruences, and, specifically, on Euler's 
         \end{align*}
     \end{proof}
     
+    \subsection{Key generation}
+    It is also worth looking into how the keys necessary for the encryption, as it is not a
+    trivial process.
+
+    The first necessary step is generating the two primes \pmb{$p$} and \pmb{$q$} that form
+    the basis of the key. There are a number of processes for generating (pseudo-)random
+    numbers which are outside the scope of this essay. In order to generate a random prime
+    number, one would use such a technique to generate an odd random number and test it for
+    primality.  If it is not prime increment by two and repeat until a prime number is
+    found:
+    
+    \begin{figure}[h!]
+        \begin{tikzpicture}[->, >=stealth, thick, main node/.style={rectangle, draw,
+            minimum height=2cm, text width=4cm}]
+            \node[main node] (generate) {Generate odd random number};
+            \node[main node, below = of generate] (check) {Check for primality};
+            \node[main node, right = 8cm of check] (increment) {Increment by 2};
+            \node[main node, below = of check] (end) {Prime found};
+
+            \draw (generate) -- (check);
+            \draw (check.south) -- (end) node[midway, right=1pt] {Prime};
+            \draw (check.east) -- (increment.west) node[midway, below=1pt] {Not prime};
+            \draw (increment.north) edge[out=120, in=30] (check.north east);
+        \end{tikzpicture}
+    \end{figure}
+
+    At the core of this process lies the \emph{primality test}. Since they keys used for RSA
+    are often 512 or even 1024 bit numbers (meaning they can take values of up to $2^{512} -
+    1$ or $2^{1024} - 1$ respectively) using trivial primality tests such as trial division
+    or even the Sieve of Eratosthenes would take far longer than would be deemed practical.
+    For this reason, so-called probabilistic primality tests are used. These tests are much
+    faster but sometimes provide false positives, meaning that they will classify composite
+    numbers as prime. Examples of such tests include the Fermat, AKS, and Miller-Rabin
+    tests. The simplest of these is the Fermat test --- which has been explained in
+    \autoref{sec:fermat} --- 
+    
+    Then \pmb{$n$} is computed as the product of $p$ and $q$. $$n=p \cdot q$$
+    
+    Finally, \pmb{$k$} is chosen to be an odd random integer, relatively prime to $\phi(n)$,
+    since $n=p \cdot q$ and $p,q$ prime, $\phi(n) = \phi(p \cdot q) = \phi(p) \cdot \phi(q)
+    = (p-1) \cdot (q-1)$. So, $$\gcd(k, (p-1) \cdot (q-1)) = 1$$
+
 
 
 \end{document}
