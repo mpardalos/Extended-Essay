@@ -250,62 +250,68 @@
     required for the algorithm increases with the limit set, making it impractical for
     computing very large primes.
 
-    \subsection{Fermat's  Little Theorem}
-    Fermat's theorem (not to be confused with Fermat's \emph{last} theorem, its better known
-    big brother) states that:
-    \begin{theorem}[Fermat's Little Theorem]
-        $p$ is prime and $p \not|\ a$ $\implies a^{p-1} \equiv 1 \pmod{p}$
-    \end{theorem}
-
-    \begin{proof}
-        Consider the numbers 0, 1a, 2a, ..., (p-1)a\\
-        Suppose two of them $ka,\ la: 1\leq k < l \leq (p-1)$ are congruent modulo $p$, i.e. 
-    %
-        \begin{align*}
-                  ka &\equiv la &\pmod{p}&\\
-            \iff  k  &\equiv l  &\pmod{p}&\ \text{since p prime and $p \not| a$}
-        \end{align*}
-    %
-        But the integers in $[0, (p-1)]$ form a complete residue system modulo $p$, and  $1
-        \leq k<l \leq (p-1)$, meaning that $k \not\equiv l \pmod p$. \emph{Contradiction}.
-        Therefore, 
-    %
-        \begin{equation*}
-            ka \not\equiv la \pmod{p}\qquad \forall\ k,l \in [0, (p-1)], k \not= k
-        \end{equation*}    
-    %
-        So, $0...(p-1)a$ are all incongruent to each other and so must be, in some order,
-        congruent to the least residue system modulo $p$, i.e.  $0...(p-1)$
-    %
-        \begin{align*}
-            a(2a)...(p-1)a &\equiv 1\times 2\times 3...\times (p-1) \pmod{p}\\
-            a^{p-1}(p-1)!  &\equiv (p-1)!                           \pmod{p}\\
-            a^{p-1}        &\equiv 1                                \pmod{p}
-        \end{align*}
-    \end{proof}
-            
+           
     \subsection{Fermat test}
-    Based on Fermat's theorem, a primality test can be devised.
 
-    Given an even integer $n$ that we want to test for primality we can check whether
-    $a^{n-1} \equiv 1 \pmod{n}$ holds for a number of integers $1<a<n$.  This test cannot,
-    by itself, prove the primality of a given number. It can, however, prove compositeness:
-    if $a^{n-1} \not\equiv 1 \pmod{n}$ then $n$ is necessarily composite since Fermat's
-    theorem holds for all primes.
+        \subsubsection{Fermat's Little Theorem}
+        Fermat's theorem (not to be confused with Fermat's \emph{last} theorem, its better known
+        big brother) states that:
+        \begin{theorem}[Fermat's Little Theorem]
+            $p$ is prime and $p \not|\ a$ $\implies a^{p-1} \equiv 1 \pmod{p}$
+        \end{theorem}
 
-    For example, let us test the number 13 for with the fermat test, using the bases 5 and 8
-    (chosen randomly):
-    \begin{align*}
-        5^{13-1} = 244140625   \equiv 1 \pmod{13}\\
-        8^{13-1} = 68719476736 \equiv 1 \pmod{13}
-    \end{align*}
-    So, 13 appears to be prime. Further testing with all the bases between 1 and 13 will
-    confirm that 13 is definitely prime.
+        \begin{proof}
+            Consider the numbers 0, 1a, 2a, ..., (p-1)a\\
+            Suppose two of them $ka,\ la: 1\leq k < l \leq (p-1)$ are congruent modulo $p$, i.e.        %
+            \begin{align*}
+                      ka &\equiv la &\pmod{p}&\\
+                \iff  k  &\equiv l  &\pmod{p}&\ \text{since p prime and $p \not| a$}
+            \end{align*}
+        %
+            But the integers in $[0, (p-1)]$ form a complete residue system modulo $p$, and  $1
+            \leq k<l \leq (p-1)$, meaning that $k \not\equiv l \pmod p$. \emph{Contradiction}.
+            Therefore,
+        %
+            \begin{equation*}
+                ka \not\equiv la \pmod{p}\qquad \forall\ k,l \in [0, (p-1)], k \not= k
+            \end{equation*}
+            %
+            So, $0...(p-1)a$ are all incongruent to each other and so must be, in some order,
+            congruent to the least residue system modulo $p$, i.e.  $0...(p-1)$
+        %
+            \begin{align*}
+                a(2a)...(p-1)a &\equiv 1\times 2\times 3...\times (p-1) \pmod{p}\\
+                a^{p-1}(p-1)!  &\equiv (p-1)!                           \pmod{p}\\
+                a^{p-1}        &\equiv 1                                \pmod{p}
+            \end{align*}
+        \end{proof}
 
-    Let's also test the Fermat test on a composite number, such as 15, using the base 6
-    \begin{align*}
-        6^{15-1} = 470184984576 \equiv 6 \pmod{15}
-    \end{align*}
+    \subsubsection{Fermat Test}
+        Based on Fermat's theorem, a primality test can be devised.
+
+        Given an even integer $n$ that we want to test for primality we can check whether
+        $a^{n-1} \equiv 1 \pmod{n}$ holds for a number of integers $1<a<n$.  This test cannot,
+        by itself, prove the primality of a given number. It can, however, prove compositeness:
+        if $a^{n-1} \not\equiv 1 \pmod{n}$ then $n$ is necessarily composite since Fermat's
+        theorem holds for all primes.
+
+        For example, let us test the number 13 for with the Fermat test, using the bases 5 and 8
+        (chosen randomly):
+        \begin{align*}
+            5^{13-1} = 244140625   \equiv 1 \pmod{13}\\
+            8^{13-1} = 68719476736 \equiv 1 \pmod{13}
+        \end{align*}
+        So, 13 appears to be prime. Further testing with all the bases between 1 and 13 will
+        confirm that 13 is definitely prime.
+
+        Let's also test the Fermat test on a composite number, such as 15, using the base 6
+        \begin{align*}
+            6^{15-1} = 470184984576 \equiv 6 \pmod{15}
+        \end{align*}
+
+        There is, however, a set of integers called the \emph{Carmichael numbers}, which pass
+        the Fermat test with any possible base, even though they are composite. Carmichael
+        numbers are, indeed, rare, they are however infinite
 
 
 
