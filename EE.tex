@@ -294,7 +294,7 @@
         $a^{n-1} \equiv 1 \pmod{n}$ holds for a number of integers $1<a<n$.  This test cannot,
         by itself, prove the primality of a given number. It can, however, prove compositeness:
         if $a^{n-1} \not\equiv 1 \pmod{n}$ then $n$ is necessarily composite since Fermat's
-        theorem holds for all primes.
+        theorem holds for all primes. \cite{primality_akalin}
 
         For example, let us test the number 13 for with the Fermat test, using the bases 5 and 8
         (chosen randomly):
@@ -317,7 +317,7 @@
 
 
 \section{RSA encryption}
-RSA is currently, one of the most popular encryption systems in the world.  It belongs to a
+RSA \cite{rsa} is currently, one of the most popular encryption systems in the world.  It belongs to a
 category of encryption systems known as public-private key.  This means, that it allows two
 users to exchange information securely, without having to exchange a shared encryption key
 beforehand, as it would be required by classical encryption systems such as Caesar or
@@ -467,6 +467,8 @@ The system is based on the theory of congruences, and, specifically, on Euler's 
     = (p-1) \cdot (q-1)$. So, $$\gcd(k, (p-1) \cdot (q-1)) = 1$$
 
 
+\bibliographystyle{plain}
+\bibliography{bibliography}
 
 \end{document}
 
