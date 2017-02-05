@@ -317,11 +317,11 @@
 
 
 \section{RSA encryption}
-RSA \cite{rsa} is currently, one of the most popular encryption systems in the world.  It belongs to a
-category of encryption systems known as public-private key.  This means, that it allows two
-users to exchange information securely, without having to exchange a shared encryption key
-beforehand, as it would be required by classical encryption systems such as Caesar or
-substitution ciphers. 
+RSA \cite{rsa} is currently, one of the most popular encryption systems in the world.  It
+belongs to a category of encryption systems known as public-private key.  This means, that
+it allows two users to exchange information securely, without having to exchange a shared
+encryption key beforehand, as it would be required by classical encryption systems such as
+Caesar or substitution ciphers. 
 
 The system is based on the theory of congruences, and, specifically, on Euler's Theorem.
 
@@ -360,69 +360,145 @@ The system is based on the theory of congruences, and, specifically, on Euler's 
         \end{tabular}
     \end{table}
     %
-    \subsection{Encryption}
-    RSA requires a number of values that will be used for the encryption/decryption, known
-    as keys.  The first of these are two primes $p,q$. These are usually very large numbers,
-    in the order of a few hundred or even thousand digits, but for these examples we will
-    use much smaller primes, just for the sake of simplicity. Next we assign $n=p \times q$.
-    Finally, we need an odd integer $k$ such that $gcd(k, \phi (n)) = 1$ 
 
-    The values we will use for the example are: $p=13$, $q=11$, $n=143 \implies \phi (n) =
-    120$ and $k = 23$
+    \subsection{Encryption \& Decryption}
+        \subsubsection{Keys}
+        RSA requires a number of values that will be used for the encryption/decryption,
+        known as keys.  The first of these are two primes \pmb{$p$},\pmb{$q$}. These are
+        usually very large numbers, in the order of a few hundred or even thousand digits,
+        but for these examples we will use much smaller primes, just for the sake of
+        simplicity. Next we assign $\pmb{n}=p \times q$.  Finally, we need an integer
+        \pmb{$e$} such that $gcd(e, \phi (n)) = 1$ and its multiplicative inverse modulo
+        $\phi(n)$, i.e. an integer \pmb{$d$}, such that $ed \equiv 1 \pmod{\phi(n)}$
 
-    Let's begin with the encryption of a plaintext message. Firstly, the message must be
-    encoded as a number. The simplest way of doing that would be by converting character
-    into a number and encrypting each character separately.  In real world applications, due
-    to the complicated nature of the arbitrary messages that have to be transmitted, this
-    encoding cannot be used, but it will suffice for this example.
+        The pair $(e, n)$ forms the public or encryption key and the pair $(d, n)$ the private
+        or decryption key.
 
-    So, for example, the message "HELLO" would become $08\ 05\ 12\ 12\ 15$, using two digits
-    for each character.
 
-    Next, comes the actual encryption. With $C$ as the ciphertext and $M$ as the plaintext:
-    \begin{equation*}
-        C \equiv M^{k} \pmod{n}
-    \end{equation*}
+        \subsubsection{Example}
+        The values we will use for the example are: $p=13$, $q=11$, $n=143 \implies \phi (n) =
+        120$, $e = 23$ and $d = 47$
 
-    Using the keys we defined, the ciphertext becomes $31\ 18\ 27\ 27\ 24$, which can then
-    be safely transmitted, so that it can be decrypted.
+        Let's begin with the encryption of a plaintext message. Firstly, the message must be
+        encoded as a number. The simplest way of doing that would be by converting character
+        into a number in the residue class modulo $n$ ---i.e. an integer between $0$ and
+        $n-1$, inclusive--- and encrypting each character separately.  In real world
+        applications, due to the complicated nature of the arbitrary messages that have to
+        be transmitted, this encoding cannot be used, but it will suffice for this example.
 
-    \subsection{Decryption}
-    Having received the ciphertext, we can recover the original message using the congruence
-    \begin{align*}
-        M \equiv C^j \pmod{n})\\
-        \text{where } kj \equiv 1 \pmod{\phi (n)}
-    \end{align*}
+        So, for example, the message "HELLO" would become $8\ 5\ 12\ 12\ 15$, using two digits
+        for each character.
 
-    Applying this to our example, we first need to solve $ kj \equiv 1 \pmod{\phi (n)}$ for
-    $j$
+        Next, comes the actual encryption. With $C$ as the ciphertext and $M$ as the plaintext:
+        \begin{equation*}
+            C \equiv M^{e} \pmod{n}
+        \end{equation*}
 
-    \begin{proof}
-        Start with the encryption congruence: 
+        Using the keys we defined, the ciphertext becomes $83\ 125\ 12\ 12\ 20$, which can then
+        be safely transmitted, so that it can be decrypted.   
+
+        When the ciphertext is received, the message can be recovered using the congruence
+        \begin{equation*}
+            M \equiv C^{d} \pmod{n}
+        \end{equation*}
+
+        Applying this to the ciphertext of our example, we get $8\ 5\ 12\ 12\ 15$, i.e. our
+        original message
+
+    
+        \subsubsection{Proof}
+        In order to demonstrate the validity of the encryption scheme it would be worth
+        providing a formal proof. \cite{so_rsa_proof}
+
+        In order to show that we have to demonstrate that encrypting and decrypting a
+        message gives back the original value. With $C$ as the ciphertext and $M$ as the
+        plaintext, as well as $C \equiv M^e \pmod{n}$ for the encryption and $M \equiv C^d
+        \pmod{n}$, what we have to show is that
         \begin{align*}
-            C & \equiv M^{k} \pmod{n}\\
-            M & \equiv C^{\frac{1}{k}} \pmod{n}
+            C^d     &\equiv M \pmod{n}\ \iff \\
+            (M^e)^d &\equiv M \pmod{n}\ \iff \\
+            M^{ed}  &\equiv M \pmod{n}
         \end{align*}
-        We need, therefore, to find $\frac{1}{k} \pmod{n}$, i.e. the \emph{multiplicative
-        inverse} of $k$ in modulo $n$. By assumption, 
-        \begin{align*}
-            gcd(k, \phi (n)) = 1 \\
-            \implies \exists\ x: kx \equiv 1 \pmod{\phi (n)}
-        \end{align*}
-        Let $j$ be a solution to the congruence in the least residue system modulo $\phi
-        (n)$ such that $j \in \left[1, \phi (n) \right)$.  Therefore, $\exists z: kj = z\phi
-        (n) + 1$
 
-        Going back to the encryption congruence we can raise it to the $j^{th}$ power to get
+        From how we have defined our keys we also have the following assumptions:
+        \begin{enumerate}
+            \item $p,q\ \text{prime}$
+            \item $n = p \cdot q$
+            \item $gcd(e, \phi(n)) = 1$ 
+            \item $ed \equiv 1 \pmod{n}$
+        \end{enumerate}
+
+        There are two possible cases regarding $M$:
+        \begin{enumerate}
+            \item $\gcd(M, n) = 1$
+            \item $\gcd(M, n) \not= 1$
+        \end{enumerate}
+
+        In the first case, $M^{\phi(n)} \equiv 1 \pmod{n}$ by Euler's theorem. Also the
+        assumption $ed \equiv 1 \pmod{\phi(n)}$ can be restated as $ed = 1 + k\phi(n)$, for
+        some $k \in \mathbb{Z}$. So, 
         \begin{align*}
-            C^j & \equiv M^{kj}\\ 
-                & \equiv M^{z\phi (n) + 1}\\
-                & \equiv M\times M^{z \phi(n)}\\
-                & \equiv M\times (M^{\phi (n)})^z\\
-                & \equiv M\times 1^z                &\text{(by Euler's theorem)}\\
-                & \equiv M \pmod{n}
+            M^{ed} &\equiv M^{1 + k\phi(n)} \pmod{n} \\
+                   &\equiv M \cdot (M^{\phi(n)})^k  \pmod{n} \\
+                   &\equiv M \cdot 1^k \pmod{n} \\
+                   &\equiv M \pmod{n}
         \end{align*}
-    \end{proof}
+        So the encryption scheme works in the first case
+
+        In the second case, there are only two subcases, since $n = p \cdot q$ where $p, q$
+        are both prime, and $ M \in \left[0, n-1\right]$
+        \renewcommand{\labelenumi}{2\alph{enumi}.}
+        \begin{enumerate}
+            \item $\gcd(M, n) = p$
+            \item $\gcd(M, n) = q$
+        \end{enumerate}
+        
+ %      Note, that since $p$ and $q$ are interchangeable, the proof for this case only has
+ %      to be shown for one of the two subcases, and the proof for the other can be inferred
+ %      by swapping $p$ and $q$. I will demonstrate the proof for $\gcd(M, n) = p$:
+
+ %      \begin{equation*}
+ %          \gcd(M, n) &= p \Longrightarrow p\ &|\ M \iff M \equiv 0 \pmod{p}
+ %      \end{equation*}
+        
+        By the Chinese Remainder Theorem,
+        \begin{equation*}
+            \left.
+                \begin{aligned}
+                    M^{ed} &\equiv M \pmod{p}\\
+                    M^{ed} &\equiv M \pmod{q}
+                \end{aligned}
+            \right\}
+            M^{ed} \equiv M \pmod{pq} \iff M^{ed} \equiv M \pmod{n}
+        \end{equation*}
+        So, we simply have to show that $M^{ed} \equiv M \pmod{q}$ --- since $p$ and $q$ are
+        interchangeable --- to prove that $M^{ed} \equiv M \pmod{n}$. This also means that
+        the two subcases (2a, 2b) are equivalent. We will be using the subcase $gcd(M, n) =
+        p$ for the proof.
+        
+        Since $\gcd(M, n) = p$; $\gcd(M, q) = 1$, and so, by Euler's Theorem,
+        \begin{equation} \label{eq:M-q-euler} 
+            M^{\phi(q)} \equiv 1 \pmod{q} 
+        \end{equation}
+
+        Also, since, by assumption $ed \equiv 1 \pmod{\phi(n)}$
+        \begin{align*}
+            ed - 1 &= h\phi(n) &&\text{for some } h \in \mathbb{Z}\\
+            ed - 1 &= h(p-1)(q-1)
+        \end{align*}
+
+        Going back to the statement that we have to prove (i.e. $M^{ed} \equiv M \pmod{q}$):
+        \begin{align*}
+            M^{ed} &\equiv M^{ed - 1} M \pmod{q} \\
+                   &\equiv M^{h(p-1)(q-1)} M \pmod{q} \\
+                   &\equiv (M^{(q-1)})^{h(p-1)} M \pmod{q} \\
+                   &\equiv (M^{\phi(q)})^{h(p-1)} M \pmod{q} &&\text{Since $q$ is prime,
+                   meaning that $\phi(q) = q-1$} \\
+                   &\equiv 1^{h(p-1)} M \pmod{q} &&\text{From (\ref{eq:M-q-euler})}\\
+                   &\equiv M \pmod{q}
+        \end{align*}
+        As stated before, this is enough to prove the validity of the second case, and so of
+        RSA as a whole.
     
     \subsection{Key generation}
     It is also worth looking into how the keys necessary for the encryption, as it is not a
@@ -435,7 +511,7 @@ The system is based on the theory of congruences, and, specifically, on Euler's 
     primality.  If it is not prime increment by two and repeat until a prime number is
     found:
     
-    \begin{figure}[h!]
+    \begin{figure}[H]
         \begin{tikzpicture}[->, >=stealth, thick, main node/.style={rectangle, draw,
             minimum height=2cm, text width=4cm}]
             \node[main node] (generate) {Generate odd random number};
