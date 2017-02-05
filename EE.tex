@@ -1,5 +1,6 @@
 \documentclass[12pt, titlepage]{article}
 \usepackage[utf8]{inputenc}
+\usepackage[]{biblatex}
 \usepackage{float}
 \usepackage{amsfonts}
 \usepackage{amssymb}
@@ -13,8 +14,9 @@
 \usepackage{tikz}
 \usetikzlibrary{positioning}
 
-\graphicspath{ {media/} } 
+\graphicspath{{media/}} 
 
+\addbibresource{bibliography.bib}
 
 \setlength{\parskip}{1em}
 \setlength{\parindent}{0em}
@@ -24,7 +26,9 @@
 
 \hypersetup{
     colorlinks,
-    linkcolor=black
+    linkcolor=black,
+    citecolor=black,
+    urlcolor=blue
 }
 
 \title{How does the internet stay secure?}
@@ -154,7 +158,7 @@
         a \equiv b \pmod{m} \iff m | a-b
     \end{equation*}
 
-    These two definitions are equivalent. This can be shown starting from 
+    These two definitions are equivalent. This can be shown starting from
     \eqref{eq:congr_def_long}
 %
     \begin{equation*}
@@ -317,7 +321,7 @@
 
 
 \section{RSA encryption}
-RSA \cite{rsa} is currently, one of the most popular encryption systems in the world.  It
+RSA \autocite{rsa} is currently, one of the most popular encryption systems in the world.  It
 belongs to a category of encryption systems known as public-private key.  This means, that
 it allows two users to exchange information securely, without having to exchange a shared
 encryption key beforehand, as it would be required by classical encryption systems such as
@@ -453,14 +457,6 @@ The system is based on the theory of congruences, and, specifically, on Euler's 
             \item $\gcd(M, n) = q$
         \end{enumerate}
         
- %      Note, that since $p$ and $q$ are interchangeable, the proof for this case only has
- %      to be shown for one of the two subcases, and the proof for the other can be inferred
- %      by swapping $p$ and $q$. I will demonstrate the proof for $\gcd(M, n) = p$:
-
- %      \begin{equation*}
- %          \gcd(M, n) &= p \Longrightarrow p\ &|\ M \iff M \equiv 0 \pmod{p}
- %      \end{equation*}
-        
         By the Chinese Remainder Theorem,
         \begin{equation*}
             \left.
@@ -540,11 +536,13 @@ The system is based on the theory of congruences, and, specifically, on Euler's 
     
     Finally, \pmb{$k$} is chosen to be an odd random integer, relatively prime to $\phi(n)$,
     since $n=p \cdot q$ and $p,q$ prime, $\phi(n) = \phi(p \cdot q) = \phi(p) \cdot \phi(q)
-    = (p-1) \cdot (q-1)$. So, $$\gcd(k, (p-1) \cdot (q-1)) = 1$$
+    = (p-1) \cdot (q-1)$. So, 
+    \begin{equation*}
+        \gcd(k, (p-1) \cdot (q-1)) = 1
+    \end{equation*}
 
 
-\bibliographystyle{plain}
-\bibliography{bibliography}
 
+\printbibliography
 \end{document}
 
