@@ -1,6 +1,9 @@
 \documentclass[12pt, titlepage]{article}
 \usepackage[utf8]{inputenc}
-\usepackage[]{biblatex}
+\usepackage[
+    citestyle=authortitle,
+    autocite=footnote
+]{biblatex}
 \usepackage{float}
 \usepackage{amsfonts}
 \usepackage{amssymb}
@@ -115,7 +118,7 @@
     \end{theorem}
 %
     This was was shown by Euclid in his work \emph{Elements}, in a particularly elegant
-    proof:
+    proof\autocite[19]{dence}:
 
     Suppose the number of primes is finite. Let us label them $p_1, p_2, ..., p_n$. Then,
     consider the numbers $P = p_1\times p_2 ... \times p_n$ and $q = P + 1$. There are now
@@ -139,8 +142,8 @@
     following proofs.
 
     Linear congruences have to do with division remainders. When two integers $a, b$ are
-    congruent modulo a third integer $m$ they leave the same remainder when divided by $m$.
-    Formally:
+    congruent modulo a third integer $m$ they leave the same remainder when divided by $m$
+    \autocite[278]{haese_ib_options}. Formally:
     %
     \begin{equation}\label{eq:congr_def_long}
         \begin{gathered}
@@ -183,7 +186,7 @@
     \end{align*}
 
     Division, however, must be treated using different rules. These will be referred to as
-    the \emph{Cancellation Laws}:
+    the \emph{Cancellation Laws}\autocite[280]{haese_ib_options}:
     \begin{gather*}
         \text{Given } d = gcd(k, m)\\
         kx \equiv ky \pmod{m} \implies x \equiv y \pmod{\frac{m}{d}}
@@ -202,7 +205,8 @@
     checking whether a number $p$ (the one being tested as prime) is divisible by all primes
     between 1 and $p$. This test however is grossly inefficient, due to the number of trial
     divisions that have to be performed for larger integers. There exists however one
-    crucial theorem that provides an optimisation to this test:
+    crucial theorem that provides an optimisation to this test
+    \autocite[276]{haese_ib_options}:
     \begin{theorem} \label{th:prime_factors_less_than_root}
         All composites have a prime factor less than or equal to their square
         root. Formally:\\
@@ -230,7 +234,7 @@
     \subsection{Sieve of Eratosthenes}
 
     This method allows for very quick computation of all primes up to a certain limit. Here
-    is how it works:
+    is how it works \autocite{wikipedia_eratosthenes_animation}:
     \begin{enumerate}
         \item Write down all numbers up to the limit you have set.
 
@@ -290,6 +294,7 @@
                 a^{p-1}        &\equiv 1                                \pmod{p}
             \end{align*}
         \end{proof}
+        (Theorem and proof from \cite[109]{dence})
 
     \subsubsection{Fermat Test}
         Based on Fermat's theorem, a primality test can be devised.
@@ -316,19 +321,8 @@
 
         There is, however, a set of integers called the \emph{Carmichael numbers}, which pass
         the Fermat test with any possible base, even though they are composite. Carmichael
-        numbers are, indeed, rare, they are however infinite
-
-
-
-\section{RSA encryption}
-RSA \autocite{rsa} is currently, one of the most popular encryption systems in the world.  It
-belongs to a category of encryption systems known as public-private key.  This means, that
-it allows two users to exchange information securely, without having to exchange a shared
-encryption key beforehand, as it would be required by classical encryption systems such as
-Caesar or substitution ciphers. 
-
-The system is based on the theory of congruences, and, specifically, on Euler's Theorem.
-
+        numbers are, indeed, rare, they are however infinite. \autocite[116]{dence}
+    
     \subsection{The Euler totient function}
     This function is necessary for Euler's theorem and, subsequently, RSA encryption. The
     definition of the function is quite simple.
@@ -412,7 +406,7 @@ The system is based on the theory of congruences, and, specifically, on Euler's 
     
         \subsubsection{Proof}
         In order to demonstrate the validity of the encryption scheme it would be worth
-        providing a formal proof. \cite{so_rsa_proof}
+        providing a formal proof. \autocite{so_rsa_proof}
 
         In order to show that we have to demonstrate that encrypting and decrypting a
         message gives back the original value. With $C$ as the ciphertext and $M$ as the
