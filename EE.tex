@@ -42,12 +42,20 @@
 
 \maketitle
 
+% No page number for ToC
+\addtocontents{toc}{\protect\thispagestyle{empty}}
+% Add intro to ToC even if it has no page number
+\addcontentsline{toc}{section}{\nameref{sec:intro}}
 \tableofcontents
 \newpage
 
-\section{Introduction}
+% Start numbering from Introduction page
+\setcounter{page}{1}
+\section*{Introduction}
+\label{sec:intro}
+
     People have always wanted to exchange secret messages. From ancient times, methods such
-    as the caesar cipher --- which substitutes each letter in a message with the one a
+    as the Caesar cipher --- which substitutes each letter in a message with the one a
     number of letters forward in the alphabet --- have been used to achieve that goal, and
     were the first steps in the study of cryptography. These methods have all had a shared
     characteristic: they needed their users to share a secret key.
@@ -99,7 +107,7 @@
     Even if someone were to incercept both communications, they would still have no access
     to the original message
 
-    In the essay I will focus on a particular method of public key cryptography called RSA,
+    In my essay I will focus on a particular method of public key cryptography called RSA,
     which is one of the most widely used today. This method is heavily based on modular
     arithmetic and the theory of congruences, as well as Euler's theorem. I will be
     exploring all of those topics and proving some of the more important theorems. In
@@ -171,8 +179,7 @@
                 b = lm + r
             \end{aligned}
         \right\}
-        \text{Therefore, }
-        (a - b) = (q-l)\times m :\: (q-l) \in \mathbb{Z}\quad
+        \text{Therefore, } (a - b) = (q-l)\times m :\: (q-l) \in \mathbb{Z}\quad
     \end{equation*}
     Which is equivalent to $m | (a-b)$
 
@@ -199,6 +206,12 @@
 
 
 \section{Primality tests}
+RSA is based on using very large random primes as the basis of its encryption keys. It is
+therefore necessary to have a method of finding such large primes. There is no known way of
+directly generating random primes, and so the best way of doing so is generating
+progressively larger numbers and checking whether they are prime. In order to achieve that,
+a number of so called \emph{primality tests} have been devised
+
     \subsection{Trial division}
 
     This is perhaps the most intuitive of all the primality tests. It consists of simply of
@@ -228,7 +241,16 @@
     There exists prime $p: p|a$. (Note, that if $a$ is prime, $p = a$, but this does not
     affect the proof.)\\
     $p|a$ and $a|n \implies p|n$. But $p|a$, Therefore,  $p \leq a \leq \sqrt{n}$\\
-    
+
+    For example, to find the prime factors of 96, you would only have to test the primes
+    between 2 and $\sqrt{96} \approx 9.8$, so the primes between 2 and 9. Trying
+    each of these numbers gives the following:
+    \begin{align*}
+        \frac{96}{2} &= 48 &\frac{96}{5} &= 19.2 \\
+        \frac{96}{3} &= 32 &\frac{96}{7} &\approx 13.7\\
+    \end{align*}
+    So, the prime factors of 96 are 2 and 3.
+
     Even with this optimization, trial division is still slow for very large numbers 
 
     \subsection{Sieve of Eratosthenes}
@@ -273,8 +295,8 @@
             Consider the numbers 0, 1a, 2a, ..., (p-1)a\\
             Suppose two of them $ka,\ la: 1\leq k < l \leq (p-1)$ are congruent modulo $p$, i.e.        %
             \begin{align*}
-                      ka &\equiv la &\pmod{p}&\\
-                \iff  k  &\equiv l  &\pmod{p}&\ \text{since p prime and $p \not| a$}
+                      ka &\equiv la \pmod{p}\\
+                \iff  k  &\equiv l  \pmod{p} &&\text{since p prime and $p \not| a$}
             \end{align*}
         %
             But the integers in $[0, (p-1)]$ form a complete residue system modulo $p$, and  $1
@@ -337,7 +359,19 @@
     prime to $n$.
 
     \subsection{Euler's Theorem}
-    
+    \begin{theorem}[Fermat's Little Theorem]
+        If $m>1$ and $\gcd(a, m) = 1$, then $a^{\phi(m)} \equiv 1 \pmod m$
+    \end{theorem}
+
+\section{RSA encryption}
+RSA \autocite{rsa} is currently, one of the most popular encryption systems in the world.  It
+belongs to a category of encryption systems known as public-private key.  This means, that
+it allows two users to exchange information securely, without having to exchange a shared
+encryption key beforehand, as it would be required by classical encryption systems such as
+Caesar or substitution ciphers. 
+
+The system is based on the theory of congruences, and, specifically, on Euler's Theorem.
+
     \subsection{Definitions \& Terminology}
     Given here are some terms and definitions that will be used:
     %
