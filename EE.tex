@@ -15,6 +15,8 @@
 \usepackage{hyperref}
 \usepackage{enumitem}
 \usepackage{tikz}
+\usepackage{fontenc}
+\usepackage{setspace}
 \usetikzlibrary{positioning}
 
 \graphicspath{{media/}} 
@@ -27,6 +29,8 @@
 \newtheorem{theorem}{Theorem}
 \newtheorem*{definition}{Definition}
 
+\font\titlefont=cmr12 at 36pt
+
 \hypersetup{
     colorlinks,
     linkcolor=black,
@@ -34,13 +38,32 @@
     urlcolor=blue
 }
 
-\title{How does the internet stay secure?}
-\author{Michalis Pardalos}
-\date{}
-
 \begin{document}
 
-\maketitle
+\begin{titlepage}
+    \topskip0pt
+    \vspace*{\fill}
+	\centering
+
+    {\titlefont HOW DOES THE}\\[0.5cm]
+    {\titlefont INTERNET STAY}\\[0.5cm]
+    {\titlefont SECURE?}
+
+    \vspace{2.5cm}
+    \includegraphics[scale=0.8]{title_image}
+    \vspace{2.5cm}
+
+    {\Large Mathematics HL} \\
+    \vspace{0.5cm}
+    {\Large Michail Pardalos - \{candidate \#\} }\\
+    \vspace{0.5cm}
+    {\Large Costeas-Geitonas School} \\
+    \vspace{0.5cm}
+    {\Large Examination Session: May 2017} \\
+    \vspace{0.5cm}
+    {\Large Word Count: }
+    \vspace*{\fill}
+\end{titlepage}
 
 % No page number for ToC
 \addtocontents{toc}{\protect\thispagestyle{empty}}
