@@ -366,14 +366,28 @@ a number of so called \emph{primality tests} have been devised
     This function is necessary for Euler's theorem and, subsequently, RSA encryption. The
     definition of the function is quite simple.
     \begin{definition}
-        $\phi(n)$ is defined as the \emph{number} of integers less than or equal to $n$ that
-        are relatively prime to $n$. By convention, $\phi(1) = 1$.
+        $\phi(\mathbf{n})$ is defined as the \emph{number} of integers $\mathbf{m}$ less than or
+        equal to $\mathbf{n}$ for which $\gcd(m, n) = 1$
     \end{definition}
-    So, for example, $\phi(10) = 4$, $\phi(25) = 20$.
+    So, for example, $\phi(10)$ is 4 since 
+    \begin{align*}
+        \gcd(1, 10) &= \mathbf{1} &\gcd(6, 10) &= 2\\
+        \gcd(2, 10) &= 2          &\gcd(7, 10) &= \mathbf{1}\\
+        \gcd(3, 10) &= \mathbf{1} &\gcd(8, 10) &= 2\\
+        \gcd(4, 10) &= 2          &\gcd(9, 10) &= \mathbf{1}\\
+        \gcd(5, 10) &= 5          &\gcd(10, 10) &= 10
+    \end{align*}
 
-    A quick conclusion that can be drawn is that, for prime $n$, $\phi(n) = n - 1$, since
-    all integers less than or equal to $n$, aside from $1$ and $n$ itself, are relatively
-    prime to $n$.
+    A quick conclusion that can be drawn is that, for prime $p$, $\phi(p) = p - 1$, since
+    all integers less than or equal to $p$, aside $p$ itself, are relatively prime to $p$. A
+    plot of the function in \autoref{fig:phi_graph} shows this clearly:
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{phi_10000}
+        \caption{Graph of $\phi(n)$ for $n$ up to 10000}
+        \label{fig:phi_graph}
+    \end{figure}
+    There is a clear upper bound on the function which follows the line $\phi(n) = n-1$
 
     \subsection{Euler's Theorem}
     \begin{theorem}[Fermat's Little Theorem]
