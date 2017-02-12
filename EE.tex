@@ -107,13 +107,17 @@
     Even if someone were to incercept both communications, they would still have no access
     to the original message
 
-    In my essay I will focus on a particular method of public key cryptography called RSA,
-    which is one of the most widely used today. This method is heavily based on modular
-    arithmetic and the theory of congruences, as well as Euler's theorem. I will be
-    exploring all of those topics and proving some of the more important theorems. In
-    addition to the encryption process itself I will also cover the way in which the keys
-    used in the encryption are generated.
-
+    I have been interested in computers and programming from a very young age, and so I have
+    recently made a few websites as personal projects. Since these websites required the
+    users to create an account and provide a password, it was necessary that the
+    communication between the user's computer and the server was encrypted. This, however,
+    was handled automatically from the server using a public key encryption scheme called
+    \emph{RSA}. All I had to do was generate a key pair and configure the server to use that
+    key pair whenever the website was accessed.  Therefore, all the underlying mathematics
+    of RSA encryption were hidden. Since this encryption scheme was such an important part
+    of my personal projects as well as the entire internet, I became interested in how it
+    works beneath the surface and how it can be rigorously proven that a scheme like this is
+    "secure".
 
 \section{Divisibility}
     \subsection{Prime numbers}
