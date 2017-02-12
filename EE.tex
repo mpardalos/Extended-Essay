@@ -102,6 +102,7 @@
 
     \begin{figure}[h!] 
     \centering
+        \label{fig:message_exchange}
         \begin{tikzpicture}[>=stealth]
             \tikzstyle{character}=[rectangle, draw, minimum height=1cm, minimum width=2cm];
 
@@ -125,6 +126,8 @@
         \vspace{1cm}
         Bob decrypts message using his private key
         \vspace{1cm}
+
+        \caption{Exchanging an encrypted message using public key cryptography}
     \end{figure}
 
     Even if someone were to incercept both communications, they would still have no access
@@ -195,8 +198,8 @@
     %
     \begin{equation}\label{eq:congr_def_long}
         \begin{gathered}
-            a \equiv b \pmod{m} \\
-            \iff \exists\ l,m,r \in \mathbb{Z}: a = qm + r\ and\ b = lm + r
+            a \equiv b \pmod{m} \iff \\
+            \exists\ l,m,r \in \mathbb{Z}: a = qm + r\ and\ b = lm + r
         \end{gathered}
     \end{equation}
     %
@@ -229,7 +232,7 @@
     \begin{align*}
         a + c &\equiv b + d \pmod{m}\\
         a - c &\equiv b - d \pmod{m}\\
-        ka 	  &\equiv kb \pmod{m}\ \forall k \in \mathbb{Z} 
+        ka 	  &\equiv kb \pmod{m} &&\text{For all } k \in \mathbb{Z}
     \end{align*}
 
     Division, however, must be treated using different rules. These will be referred to as
