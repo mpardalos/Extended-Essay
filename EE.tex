@@ -634,6 +634,28 @@ The system is based on the theory of congruences, and, specifically, on Euler's 
         \gcd(k, (p-1) \cdot (q-1)) = 1
     \end{equation*}
 
+\section{Conclusion}
+We have shown that it is possible to recover a message that has gone through RSA encryption,
+with knowledge of only the public key. But the research question had to do with whether this
+encryption scheme was secure, not simply valid. So, the question still stands: \emph{How
+does RSA allow for secure and private communication over the internet?}. 
+
+The answer lies in the way the encryption and decryption keys are related. Recall, that
+$ed\equiv 1 \pmod{\phi(n)}$, where $e$ the encryption key, $d$ the decryption key, and $n$
+the product of two (extremely) large primes, $p$, $q$. $e$ and $n$ are shared to allow
+anyone to send encrypted to the owner of the keys, but $d$, which is necessary to read an
+encrypted message is kept secret by the owner of the keys. So, to "break" RSA one would have
+to compute $d$ from $e$ and $n$. But in order to do that, one would have to first compute
+$\phi(n)$. This is extremely difficult without knowledge of $p$ and $q$. There are two ways
+of going about that: First is to go by the definition of the $\phi$-function, and simply
+count the integers less than $n$ whose greatest common divisor with $n$ is 1. Even with
+modern supercomputers and various optimisations, with $n$ being in the neighborhood of
+$2^{512}$ to $2^{1024}$ for modern applications of RSA, this would take hundreds of years
+$^{reference\ needed}$.  The alternative is factoring $n$ to find $p$ and $q$, and compute
+$\phi(n)$ as $\phi(p) \cdot \phi(q) = (p-1) \cdot (q-1)$. But again, because of the size of
+$n$, this would --- in the best case --- take a few hundred years. Therefore, with current
+methods and as long as the possible attacker doesn't directly steal the private key from
+where it is stored, RSA is completely secure.
 
 
 \printbibliography
