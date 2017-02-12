@@ -187,6 +187,14 @@
     This means that it is not possible to create a (finite) list of all prime numbers since
     any such list will be incomplete.
         
+    A concept related to prime numbers that also often comes up in number theory and RSA in
+    particular, is that of \emph{relatively prime} or \emph{coprime} numbers. This refers to
+    numbers which do not share any divisors other than 1.
+    \begin{definition}
+        Two integers $a, b$ are relatively prime if and only if $\gcd(a, b) = 1$
+    \end{definition}
+    So, for example, 8 and 15 are coprime, since 8 can be only by divided by 1, 2, 4, and 8,
+    while 15 can only be divided by 3 and 5. 15 and 9 are not, since 3 divides both.
 
     \subsection{Modular Arithmetic}
     An understanding of linear congruences and modular arithmetic is necessarry for the
