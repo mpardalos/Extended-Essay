@@ -1,5 +1,4 @@
 \documentclass[12pt, titlepage]{article}
-\usepackage[utf8]{inputenc}
 \usepackage[
     citestyle=authortitle,
     autocite=footnote
@@ -130,7 +129,7 @@
         \caption{Exchanging an encrypted message using public key cryptography}
     \end{figure}
 
-    Even if someone were to incercept both communications, they would still have no access
+    Even if someone were to intercept both communications, they would still have no access
     to the original message
 
     I have been interested in computers and programming from a very young age, and so I have
@@ -197,7 +196,7 @@
     while 15 can only be divided by 3 and 5. 15 and 9 are not, since 3 divides both.
 
     \subsection{Modular Arithmetic}
-    An understanding of linear congruences and modular arithmetic is necessarry for the
+    An understanding of linear congruences and modular arithmetic is necessary for the
     following proofs.
 
     Linear congruences have to do with division remainders. When two integers $a, b$ are
@@ -344,10 +343,11 @@ a number of so called \emph{primality tests} have been devised
 
         \begin{proof}
             Consider the numbers 0, 1a, 2a, ..., (p-1)a\\
-            Suppose two of them $ka,\ la: 1\leq k < l \leq (p-1)$ are congruent modulo $p$, i.e.        %
+            Suppose two of them $ka,\ la: 1\leq k < l \leq (p-1)$ are congruent modulo $p$, i.e.
+        %
             \begin{align*}
                       ka &\equiv la \pmod{p}\\
-                \iff  k  &\equiv l  \pmod{p} &&\text{since p prime and $p \not| a$}
+                \iff  k  &\equiv l  \pmod{p} &&\text{since $p$ prime and $p \not| a$}
             \end{align*}
         %
             But the integers in $[0, (p-1)]$ form a complete residue system modulo $p$, and  $1
@@ -542,7 +542,7 @@ The system is based on the theory of congruences, and, specifically, on Euler's 
         \end{align*}
         So the encryption scheme works in the first case
 
-        In the second case, there are only two subcases, since $n = p \cdot q$ where $p, q$
+        In the second case, there are only two sub cases, since $n = p \cdot q$ where $p, q$
         are both prime, and $ M \in \left[0, n-1\right]$
         \renewcommand{\labelenumi}{2\alph{enumi}.}
         \begin{enumerate}
@@ -562,7 +562,7 @@ The system is based on the theory of congruences, and, specifically, on Euler's 
         \end{equation*}
         So, we simply have to show that $M^{ed} \equiv M \pmod{q}$ --- since $p$ and $q$ are
         interchangeable --- to prove that $M^{ed} \equiv M \pmod{n}$. This also means that
-        the two subcases (2a, 2b) are equivalent. We will be using the subcase $gcd(M, n) =
+        the two sub cases (2a, 2b) are equivalent. We will be using the sub case $gcd(M, n) =
         p$ for the proof.
         
         Since $\gcd(M, n) = p$; $\gcd(M, q) = 1$, and so, by Euler's Theorem,
