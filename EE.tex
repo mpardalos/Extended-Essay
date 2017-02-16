@@ -11,7 +11,12 @@
 \usepackage{array}
 \usepackage{graphicx}
 \usepackage[margin=1in]{geometry}
-\usepackage{hyperref}
+\usepackage[
+    colorlinks,
+    linkcolor=black,
+    citecolor=black,
+    urlcolor=blue
+]{hyperref}
 \usepackage{enumitem}
 \usepackage{tikz}
 \usepackage{fontenc}
@@ -29,13 +34,6 @@
 \newtheorem*{definition}{Definition}
 
 \font\titlefont=cmr12 at 36pt
-
-\hypersetup{
-    colorlinks,
-    linkcolor=black,
-    citecolor=black,
-    urlcolor=blue
-}
 
 \begin{document}
 
@@ -100,7 +98,7 @@
     \emph{public key} and the decryption key the \emph{private key}
 
     \begin{figure}[h!] 
-    \centering
+        \centering
         \label{fig:message_exchange}
         \begin{tikzpicture}[>=stealth]
             \tikzstyle{character}=[rectangle, draw, minimum height=1cm, minimum width=2cm];
@@ -170,9 +168,9 @@
     This was was shown by Euclid in his work \emph{Elements}, in a particularly elegant
     proof\autocite[19]{dence}:
 
-    Suppose the number of primes is finite. Let us label them $p_1, p_2, ..., p_n$. Then,
-    consider the numbers $P = p_1\times p_2 ... \times p_n$ and $q = P + 1$. There are now
-    two possible cases regarding $P$ and $q$:
+    Suppose the number of primes is finite. Let us label them $p_1, p_2, \ldots, p_n$. Then,
+    consider the numbers $P = p_1\times p_2\times \ldots \times p_n$ and $q = P + 1$. There
+    are now two possible cases regarding $P$ and $q$:
     \begin{enumerate}[label=\alph*)]
         \item $q$ is prime and therefore there is a prime ($q$) that is not contained in the
             initial list, which supposedly contained all primes, or
@@ -219,8 +217,8 @@
         a \equiv b \pmod{m} \iff m | a-b
     \end{equation*}
 
-    These two definitions are equivalent. This can be shown starting from
-    \eqref{eq:congr_def_long}
+    These two definitions are equivalent. This can be shown starting
+    from~\eqref{eq:congr_def_long}
 %
     \begin{equation*}
         \left. 
@@ -245,22 +243,21 @@
     Division, however, must be treated using different rules. These will be referred to as
     the \emph{Cancellation Laws}\autocite[280]{haese_ib_options}:
     \begin{gather*}
-        \text{Given } d = gcd(k, m)\\
+        \text{Given } d = \gcd(k, m)\\
         kx \equiv ky \pmod{m} \implies x \equiv y \pmod{\frac{m}{d}}
     \end{gather*}
-    Note, that if $gcd(k, m) = 1$, i.e. if we are dividing by a number relatively prime to
+    Note, that if $\gcd(k, m) = 1$, i.e. if we are dividing by a number relatively prime to
     the modulo, this simplifies to:
     \begin{equation*}
         kx \equiv ky \pmod{m} \implies x \equiv y \pmod{m}
     \end{equation*}
-
 
 \section{Primality tests}
 RSA is based on using very large random primes as the basis of its encryption keys. It is
 therefore necessary to have a method of finding such large primes. There is no known way of
 directly generating random primes, and so the best way of doing so is generating
 progressively larger numbers and checking whether they are prime. In order to achieve that,
-a number of so called \emph{primality tests} have been devised
+a number of so called \emph{primality tests} have been devised  
 
     \subsection{Trial division}
 
@@ -521,7 +518,7 @@ The system is based on the theory of congruences, and, specifically, on Euler's 
         \begin{enumerate}
             \item $p,q\ \text{prime}$
             \item $n = p \cdot q$
-            \item $gcd(e, \phi(n)) = 1$ 
+            \item $\gcd(e, \phi(n)) = 1$ 
             \item $ed \equiv 1 \pmod{n}$
         \end{enumerate}
 
