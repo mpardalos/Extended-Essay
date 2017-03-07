@@ -214,11 +214,10 @@ such list will be incomplete.
 A concept related to prime numbers that also often comes up in number theory and RSA in
 particular, is that of \emph{relatively prime} or \emph{coprime} numbers. This refers to
 numbers which do not share any divisors other than 1.
-%
-\begin{definition}
-    Two integers $a, b$ are relatively prime if and only if $\gcd(a, b) = 1$
-\end{definition}
-%
+
+\textit{Two integers $a, b$ are relatively prime (coprime) if and only if their greatest common
+divisor is equal to 1 ($\gcd(a, b) = 1$)}
+
 So, for example, 8 and 15 are coprime, since 8 can be only by divided by 1, 2, 4, and 8,
 while 15 can only be divided by 3 and 5. 15 and 9 are not, since 3 divides both.
 
@@ -227,9 +226,10 @@ while 15 can only be divided by 3 and 5. 15 and 9 are not, since 3 divides both.
 An understanding of linear congruences and modular arithmetic is necessary for the
 main proofs of the essay.
 
-Linear congruences have to do with division remainders. When two integers $a, b$ are
-congruent modulo a third integer $m$ they leave the same remainder when divided by $m$
-\autocite[278]{haese_ib_options}. Formally:
+Linear congruences have to do with division remainders. 
+
+\textit{When two integers $a, b$ are congruent modulo a third integer $m$ they leave the same
+remainder when divided by $m$ \autocite[278]{haese_ib_options}. Formally:}
 %
 \begin{equation}\label{eq:congr_def_long}
     \begin{gathered}
@@ -260,7 +260,13 @@ from~\eqref{eq:congr_def_long}
     \text{Therefore, } (a - b) = (q-l)\times m :\: (q-l) \in \mathbb{Z}\quad
 \end{equation*}
 %
-Which is equivalent to $m | (a-b)$
+Which is equivalent to $m | (a-b)$.
+
+\textit{If two integers a,b satisfy $a \equiv b \pmod{m}$, then we say that $b$ is the residue of
+$a$ modulo m. Generalising this to all integers, we can state, that all integers are
+congruent to one of the possible values of $b$, namely, one of the set $\{0, 1, 2, 3, \ldots,
+(n-1)\}$. This set is called \textbf{the complete system of residues modulo
+$\mathbf{m}$}}. \autocite[85]{dence}
 
 When performing arithmetic inside a modulo, addition, subtraction, and multiplication behave
 exactly as one would expect. Namely, given
@@ -287,6 +293,7 @@ modulo, this simplifies to:
     kx \equiv ky \pmod{m} \implies x \equiv y \pmod{m}
 \end{equation*}
 %
+
 \section{Primality tests}
 
 RSA is based on using very large random primes as the basis of its encryption keys. It is
@@ -456,9 +463,12 @@ So, for example, $\phi(10)$ is 4 since
     \gcd(5, 10) &= 5          &\gcd(10, 10) &= 10
 \end{align*}
 %
-A quick conclusion that can be drawn is that, for prime $p$, $\phi(p) = p - 1$, since all
-integers less than or equal to $p$, aside $p$ itself, are relatively prime to $p$. A plot of
-the function in \autoref{fig:phi_graph} shows this clearly:
+A quick conclusion that can be drawn is the following:
+
+\textit{For prime $p$, $\phi(p) = p - 1$, since all integers less than or equal to $p$,
+aside $p$ itself, are relatively prime to $p$.} 
+
+A plot of the function in \autoref{fig:phi_graph} shows this clearly:
 %
 \begin{figure}[H]
     \centering
