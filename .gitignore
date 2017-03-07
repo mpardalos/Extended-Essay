@@ -1,0 +1,9 @@
+*
+!.gitignore
+!*.tex
+!*.bib
+!*.png
+!*.jpeg
+!*.jpg
+!*.py
+!README.md
