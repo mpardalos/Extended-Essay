@@ -412,34 +412,37 @@ congruent to the least residue system modulo $p$, i.e.  $0...(p-1)$
 
 \subsubsection{Fermat Test}
 
-Based on Fermat's theorem, a primality test can be devised.
+Based on Fermat's Little theorem, a primality test can be devised.
 
-Given an even integer $n$ that we want to test for primality we can check whether $a^{n-1}
+Given an odd integer $n$ that we want to test for primality we can check whether $a^{n-1}
 \equiv 1 \pmod{n}$ holds for a number of integers $1<a<n$.  This test cannot, by itself,
 prove the primality of a given number. It can, however, prove compositeness: if $a^{n-1}
 \not\equiv 1 \pmod{n}$ then $n$ is necessarily composite since Fermat's theorem holds for
-all primes. \cite{primality_akalin}
+all primes. \autocite{primality_akalin} 
 
-For example, let us test the number 13 for with the Fermat test, using the bases 5 and 8
-(chosen randomly):
+For example, let us test the number 13 for primality with the Fermat test, using the bases 5
+and 8 (chosen randomly):
 %
 \begin{align*}
     5^{13-1} = 244140625   \equiv 1 \pmod{13}\\
     8^{13-1} = 68719476736 \equiv 1 \pmod{13}
 \end{align*}
 %
-So, 13 appears to be prime. Further testing with all the bases between 1 and 13 will confirm
-that 13 is definitely prime.
+So, 13 appears to be prime. Further testing with all the bases between 1 and 13 will
+increase the likelihood that 13 is prime.
 
-Let's also test the Fermat test on a composite number, such as 15, using the base 6
+Let's also test the Fermat test on a composite number, such as 15, using the base 6:
 %
 \begin{align*}
     6^{15-1} = 470184984576 \equiv 6 \pmod{15}
 \end{align*}
 %
+This shows that 15 is \emph{definitely} prime.
+
 There is, however, a set of integers called the \emph{Carmichael numbers}, which pass the
 Fermat test with any possible base, even though they are composite. Carmichael numbers are,
-indeed, rare, they are however infinite. \autocite[116]{dence}
+indeed, rare, they are however infinite. \autocite[116]{dence} This shows that the Fermat
+test is a necessary, but not sufficient condition for a number ot be prime.
 
 \subsection{The Euler totient function}
 
