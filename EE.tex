@@ -444,16 +444,25 @@ Fermat test with any possible base, even though they are composite. Carmichael n
 indeed, rare, they are however infinite. \autocite[116]{dence} This shows that the Fermat
 test is a necessary, but not sufficient condition for a number ot be prime.
 
-\subsection{The Euler totient function}
+\section{RSA encryption}
 
-This function is necessary for Euler's theorem and, subsequently, RSA encryption. The
-definition of the function is quite simple.
-%
-\begin{definition}
-    $\phi(\mathbf{n})$ is defined as the \emph{number} of integers $\mathbf{m}$ less than or
-    equal to $\mathbf{n}$ for which $\gcd(m, n) = 1$
-\end{definition}
-%
+RSA \autocite{rsa} is currently, one of the most popular encryption systems in the world.
+It belongs to a category of encryption systems known as public-private key.  This means,
+that it allows two users to exchange information securely, without having to exchange a
+shared encryption key beforehand, as it would be required by classical encryption systems
+such as Caesar or substitution ciphers. 
+
+The system is based on the theory of congruences, and, specifically, on Euler's Theorem.
+
+\subsection{Euler's Theorem}
+
+Firstly we need to define a function, the Euler $\phi$-function, necessary for Euler's
+Theorem, and, subsequently, RSA encryption. The definition of the function is quite simple:
+\autocite[106]{dence}
+
+\textit{$\phi(\mathbf{n})$ is defined as the \emph{number} of integers $\mathbf{m}$ less
+than or equal to $\mathbf{n}$ for which $\gcd(m, n) = 1$}
+
 So, for example, $\phi(10)$ is 4 since 
 %
 \begin{align*}
@@ -478,45 +487,19 @@ A plot of the function in \autoref{fig:phi_graph} shows this clearly:
     \label{fig:phi_graph}
 \end{figure}
 %
-There is a clear upper bound on the function which follows the line $\phi(n) = n-1$
+There is a clear upper bound on the function which follows the line $\phi(n) = n-1$.
 
-\subsection{Euler's Theorem}
+Moreover, \emph{if $p$ and $q$ are two coprime integers, then $\phi(pq) = \phi(p)
+\phi(q)$}\autocite[107]{dence}
 
-\begin{theorem}[Fermat's Little Theorem]
+Euler's Theorem provides an extension of Fermat's Little Theorem, to the case where the
+modulus m is composite. Its proof requires knowledge of abstract algebra and therefore is
+outside the scope of this essay.
+%
+\begin{theorem}[Euler's Theorem]
     If $m>1$ and $\gcd(a, m) = 1$, then $a^{\phi(m)} \equiv 1 \pmod m$
 \end{theorem}
 
-\section{RSA encryption}
-
-RSA \autocite{rsa} is currently, one of the most popular encryption systems in the world.
-It belongs to a category of encryption systems known as public-private key.  This means,
-that it allows two users to exchange information securely, without having to exchange a
-shared encryption key beforehand, as it would be required by classical encryption systems
-such as Caesar or substitution ciphers. 
-
-The system is based on the theory of congruences, and, specifically, on Euler's Theorem.
-
-\subsection{Definitions \& Terminology}
-
-Given here are some terms and definitions that will be used:
-%
-\begin{table}[H]
-    \begin{tabular}{ | m{5em} | p{30em} | }
-        \hline
-        Term      & Definition\\
-        \hline
-        plaintext & The message that will be encrypted, in \emph{plain
-                    text}, i.e. before it is encrypted. Usually represented as $M$\\
-        \hline
-        ciphertext & The message after it has been encrypted. This is what
-                     is sent from one user to the other. Without
-                     knowledge of the public and private key it is
-                     impossible to recover the plaintext using just the
-                     ciphertext. Usually represented as $C$\\
-        \hline
-    \end{tabular}
-\end{table}
-%
 
 \subsection{Encryption \& Decryption}
 
