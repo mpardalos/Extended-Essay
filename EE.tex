@@ -503,10 +503,10 @@ outside the scope of this essay.
 
 \subsection{Encryption \& Decryption}
 
-\subsubsection{Keys}
+\subsubsection{Keys \& Terminology}
 
 RSA requires a number of values that will be used for the encryption/decryption, known as
-keys.  The first of these are two primes \pmb{$p$},\pmb{$q$}. These are usually very large
+keys. The first of these are two primes \pmb{$p$},\pmb{$q$}. These are usually very large
 numbers, in the order of a few hundred or even thousand digits, but for these examples we
 will use much smaller primes, just for the sake of simplicity. Next we assign $\pmb{n}=p
 \times q$.  Finally, we need an integer \pmb{$e$} such that $gcd(e, \phi (n)) = 1$ and its
@@ -516,10 +516,30 @@ multiplicative inverse modulo $\phi(n)$, i.e. an integer \pmb{$d$}, such that $e
 The pair $(e, n)$ forms the public or encryption key and the pair $(d, n)$ the private or
 decryption key.
 
+The message in its readable form is usually called the \emph{plaintext}, usually represented
+as $M$, while the encrypted message is called the \emph{ciphertext}, usually represented as
+$C$.
+
+In RSA, the ciphertext and plaintext are related with the following congruences:
+%
+\begin{align*}
+    C &\equiv M^{e} \pmod{n}\\
+    M &\equiv C^{d} \pmod{n}
+\end{align*}
+%
+
+Before providing the proof, I will show how RSA works in an example.
+
 \subsubsection{Example}
 
-The values we will use for the example are: $p=13$, $q=11$, $n=143 \implies \phi (n) =
-120$, $e = 23$ and $d = 47$
+The values we will use for the example are: 
+\begin{itemize}
+    \item $p=13$ 
+    \item $q=11$
+    \item $n=143$ 
+    \item $\phi (n) = \phi(p) \times \phi(q) = (13-1) \times (11-1) = 120$ 
+    \item $e = 23$ and $d = 47$, since $ed = 23 \times 47 = 1081 \equiv 1 \pmod{\phi(n)=120}$
+\end{itemize}
 
 Let's begin with the encryption of a plaintext message. Firstly, the message must be encoded
 as a number. The simplest way of doing that would be by converting character into a number
@@ -531,21 +551,27 @@ but it will suffice for this example.
 So, for example, the message "HELLO" would become $8\ 5\ 12\ 12\ 15$, using two digits for
 each character.
 
-Next, comes the actual encryption. With $C$ as the ciphertext and $M$ as the plaintext:
-\begin{equation*}
-    C \equiv M^{e} \pmod{n}
-\end{equation*}
+Next, comes the actual encryption. Using the keys we defined, the ciphertext $C$ becomes: 
+\begin{align*}
+    8^{23}  &\equiv 83 \pmod{143} \\
+    5^{23}  &\equiv 125 \pmod{143} \\
+    12^{23}  &\equiv 12 \pmod{143} \\
+    12^{23}  &\equiv 12 \pmod{143} \\
+    15^{23}  &\equiv 20 \pmod{143} \\
+\end{align*}
 
-Using the keys we defined, the ciphertext becomes $83\ 125\ 12\ 12\ 20$, which can then be
-safely transmitted, so that it can be decrypted.   
+So, in total, $C$ become 83 125 12 12 20. Which can then be safely transmitted, so that it can be decrypted.   
 
-When the ciphertext is received, the message can be recovered using the congruence
-\begin{equation*}
-    M \equiv C^{d} \pmod{n}
-\end{equation*}
-
-Applying this to the ciphertext of our example, we get $8\ 5\ 12\ 12\ 15$, i.e. our original
-message
+Decrypting the ciphertext, we get $8\ 5\ 12\ 12\ 15$, i.e. our original message
+\begin{align*}
+    83^{47}  &\equiv 8 \pmod{143} \\
+    125^{47}  &\equiv 5 \pmod{143} \\
+    12^{47}  &\equiv 12 \pmod{143} \\
+    12^{47}  &\equiv 12 \pmod{143} \\
+    20^{47}  &\equiv 15 \pmod{143} \\
+\end{align*}
+\textit{For the above calculations I used a piece of python code which can be seen in
+appendix A.}
 
 \subsubsection{Proof}
 
