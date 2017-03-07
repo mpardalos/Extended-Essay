@@ -110,14 +110,15 @@ without ever having to exchange any secret information. Even if a third party we
 in on all communications between them, they would still be unable to understand the messages
 they were exchanging.
 
-The main idea behind public key cryptography is that encryption and decryption don't have to
-use the exact same key: there can be a pair of keys, one used for encryption and the other
-for decryption. Say Alice wants to send a message to Bob and they each have an encryption
-key and a decryption key. Bob can publicly share his encryption key which Alice will then
-use to encrypt the message she wants to send, and send the encrypted message to Bob. When he
-receives it, he can use his decryption key to decrypt the message. Because of the way they
-are used, the encryption key is often called the \emph{public key} and the decryption key
-the \emph{private key}
+The main idea behind public key cryptography is that encryption (changing a message into an
+unreadable form) and decryption (the inverse operation of encryption, recovering the
+original message from the unreadable form) don't have to use the exact same key: there can
+be a pair of keys, one used for encryption and the other for decryption. Say Alice wants to
+send a message to Bob and they each have an encryption key and a decryption key. Bob can
+publicly share his encryption key which Alice will then use to encrypt the message she wants
+to send, and send the encrypted message to Bob. When he receives it, he can use his
+decryption key to decrypt the message. Because of the way they are used, the encryption key
+is often called the \emph{public key} and the decryption key the \emph{private key}
 %
 \begin{figure}[h!] 
     \centering
@@ -149,6 +150,7 @@ the \emph{private key}
     \caption{Exchanging an encrypted message using public key cryptography}
 \end{figure}
 %
+
 Even if someone were to intercept both communications, they would still have no access to
 the original message
 
