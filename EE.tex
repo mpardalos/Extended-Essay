@@ -28,6 +28,13 @@
 \usepackage{fontenc}
 \usepackage{setspace}
 \usepackage[textfont=it]{caption}
+\usepackage{minted}
+    \setminted{
+        linenos,
+        frame=lines,
+        framesep=5mm,
+        fontsize=\footnotesize
+    }
 
 \setlength{\parskip}{1em}
 \setlength{\parindent}{0em}
@@ -571,7 +578,7 @@ Decrypting the ciphertext, we get $8\ 5\ 12\ 12\ 15$, i.e. our original message
     20^{47}  &\equiv 15 \pmod{143} \\
 \end{align*}
 \textit{For the above calculations I used a piece of python code which can be seen in
-appendix A.}
+\autoref{sec:code_appendix}}
 
 \subsubsection{Proof of the Validity of the Encryption Scheme}
 
@@ -755,8 +762,24 @@ candidates the would be. While it is difficult to factorise a product of two Mer
 primes divides $n$, and so also find the other prime used (it being the quotient in that
 division), breaking the encryption.
 
-
-
 \printbibliography
+
+\appendix
+
+\section{Code used for converting between ciphertext and plaintext}
+\label{sec:code_appendix}
+
+\textit{All code below is written for Python 3.0 or later}
+
+Encryption: \vspace{-5mm}
+\inputminted{python}{encrypt.py}
+\vspace{-5mm}
+Output: \texttt{83 125 12 12 20}
+
+Decryption: \vspace{-5mm}
+\inputminted{python}{decrypt.py}
+\vspace{-5mm}
+Output: \texttt{8 5 12 12 15}
+
 \end{document}
 
