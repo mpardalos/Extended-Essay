@@ -378,40 +378,37 @@ computing very large primes.
 \subsubsection{Fermat's Little Theorem}
 
 Fermat's theorem (not to be confused with Fermat's \emph{last} theorem, its better known big
-brother) states that:
+brother) states that: \autocite{dence}
 %
 \begin{theorem}[Fermat's Little Theorem]
     $p$ is prime and $p \not|\ a$ $\implies a^{p-1} \equiv 1 \pmod{p}$
 \end{theorem}
 %
-\begin{proof}
-    Consider the numbers 0, 1a, 2a, ..., (p-1)a\\
-    Suppose two of them $ka,\ la: 1\leq k < l \leq (p-1)$ are congruent modulo $p$, i.e.
+Indeed, let us consider the numbers 0, 1a, 2a, ..., (p-1)a.\\
+Suppose two of them $ka,\ la: 1\leq k < l \leq (p-1)$ are congruent modulo $p$, i.e.
 %
-    \begin{align*}
-              ka &\equiv la \pmod{p}\\
-        \iff  k  &\equiv l  \pmod{p} &&\text{since $p$ prime and $p \not| a$}
-    \end{align*}
+\begin{align*}
+          ka &\equiv la \pmod{p}\\
+    \iff  k  &\equiv l  \pmod{p} &&\text{since $p$ prime and $p \not| a$}
+\end{align*}
 %
-    But the integers in $[0, (p-1)]$ form a complete residue system modulo $p$, and  $1
-    \leq k<l \leq (p-1)$, meaning that $k \not\equiv l \pmod p$. \emph{Contradiction}.
-    Therefore,
+But the integers in $[0, (p-1)]$ form a complete residue system modulo $p$, and  $1
+\leq k<l \leq (p-1)$, meaning that $k \not\equiv l \pmod p$, and therefore leads to a
+contradiction. Therefore,
 %
-    \begin{equation*}
-        ka \not\equiv la \pmod{p}\qquad \forall\ k,l \in [0, (p-1)], k \not= k
-    \end{equation*}
-    %
-    So, $0...(p-1)a$ are all incongruent to each other and so must be, in some order,
-    congruent to the least residue system modulo $p$, i.e.  $0...(p-1)$
+\begin{equation*}
+    ka \not\equiv la \pmod{p}\qquad \forall\ k,l \in [0, (p-1)], k \not= l
+\end{equation*}
 %
-    \begin{align*}
-        a(2a)...(p-1)a &\equiv 1\times 2\times 3...\times (p-1) \pmod{p}\\
-        a^{p-1}(p-1)!  &\equiv (p-1)!                           \pmod{p}\\
-        a^{p-1}        &\equiv 1                                \pmod{p}
-    \end{align*}
-\end{proof}
+So, $0...(p-1)a$ are all incongruent to each other and so must be, in some order,
+congruent to the least residue system modulo $p$, i.e.  $0...(p-1)$
 %
-(Theorem and proof from \cite[109]{dence})
+\begin{align*}
+    a(2a)...(p-1)a &\equiv 1\times 2\times 3...\times (p-1) \pmod{p}\\
+    a^{p-1}(p-1)!  &\equiv (p-1)!                           \pmod{p}\\
+    a^{p-1}        &\equiv 1                                \pmod{p}
+\end{align*}
+%
 
 \subsubsection{Fermat Test}
 
