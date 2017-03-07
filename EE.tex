@@ -718,7 +718,7 @@ since $n=p \cdot q$ and $p,q$ prime, $\phi(n) = \phi(p \cdot q) = \phi(p) \cdot 
 \end{equation*}
 %
 
-\section{Conclusion}
+\section{Conclusion - Discussion}
 
 We have shown that it is possible to recover a message that has gone through RSA encryption,
 with knowledge of only the public key. But the research question had to do with whether this
@@ -742,19 +742,17 @@ $n$, this would --- in the best case --- take a few hundred years. Therefore, wi
 methods and as long as the possible attacker doesn't directly steal the private key from
 where it is stored, RSA is completely secure.
 
-\section{Discussion}
-
-Firstly, when it comes to key generation for RSA it is worth bringing up the topic of
-\emph{Mersenne Primes}: prime numbers of the form $2^n - 1$. Such numbers are currently the
-largest primes numbers found, and the search for larger primes consists mainly of searching
-for such primes. Only 49 such primes are known with the largest, discovered in 2015, being
-$2^{74,207,281} - 1$.\autocite{newscientist_mersenne} For this reason, they would form
-perfect candidates for using as $p$ and $q$ in RSA encryption. In reality however, they are
-never used. That is, in a way, exactly because of how great candidates the would be. While
-it is difficult to factorise a product of two Mersenne primes --- which would form our $n$
---- it is trivial to check whether any of the 49 known Mersenne primes divides $n$, and so
-also find the other prime used (it being the quotient in that division), breaking the
-encryption.
+When it comes to key generation for RSA it is also worth bringing up the topic of
+\emph{Mersenne Primes}:\autocite[33]{dence} prime numbers of the form $2^n - 1$. Such
+numbers are currently the largest primes numbers found, and the search for larger primes
+consists mainly of searching for such primes. Only 49 such primes are known with the
+largest, discovered in 2015, being $2^{74,207,281} - 1$.\autocite{newscientist_mersenne} For
+this reason, they would form perfect candidates for using as $p$ and $q$ in RSA encryption.
+In reality however, they are never used. That is, in a way, exactly because of how great
+candidates the would be. While it is difficult to factorise a product of two Mersenne primes
+--- which would form our $n$ --- it is trivial to check whether any of the 49 known Mersenne
+primes divides $n$, and so also find the other prime used (it being the quotient in that
+division), breaking the encryption.
 
 
 
