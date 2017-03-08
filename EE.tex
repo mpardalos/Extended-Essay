@@ -744,11 +744,11 @@ of going about that: First is to go by the definition of the $\phi$-function, an
 count the integers less than $n$ whose greatest common divisor with $n$ is 1. Even with
 modern supercomputers and various optimisations, with $n$ being in the neighborhood of
 $2^{512}$ to $2^{1024}$ for modern applications of RSA, this would take hundreds of years
-$^{reference\ needed}$.  The alternative is factoring $n$ to find $p$ and $q$, and compute
-$\phi(n)$ as $\phi(p) \cdot \phi(q) = (p-1) \cdot (q-1)$. But again, because of the size of
-$n$, this would --- in the best case --- take a few hundred years. Therefore, with current
-methods and as long as the possible attacker doesn't directly steal the private key from
-where it is stored, RSA is completely secure.
+\autocite{prime_factorisation}. The alternative is factoring $n$ to find $p$ and $q$, and
+compute $\phi(n)$ as $\phi(p) \cdot \phi(q) = (p-1) \cdot (q-1)$. But again, because of the
+size of $n$, this would --- in the best case --- take a few hundred years. Therefore, with
+current methods and as long as the possible attacker doesn't directly steal the private key
+from where it is stored, RSA is completely secure.
 
 When it comes to key generation for RSA it is also worth bringing up the topic of
 \emph{Mersenne Primes}:\autocite[33]{dence} prime numbers of the form $2^n - 1$. Such
