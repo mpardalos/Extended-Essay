@@ -65,7 +65,7 @@
     \vspace{0.5cm}
     {\Large Examination Session: May 2017} \\
     \vspace{0.5cm}
-    {\Large Word Count: 3307}
+    {\Large Word Count: 3304}
     \vspace*{\fill}
 \end{titlepage}
 
@@ -210,7 +210,7 @@ now two possible cases regarding $P$ and $q$:
         initial list, which supposedly contained all primes, or
     \item $q$ is not prime and there exists some prime $p$ which divides $q$. If $p$
         were in the list then it would also divide $P$. But that would mean that it
-        would also divide the difference of $P$ and $q$, which is $P - q = P - (P + 1) =
+        would also divide the difference of $P$ and $q$, which is $q - P = (P + 1) - P =
         1$. But no prime divides $1$.  Therefore, $p$ does not divide $P$ and so is not
         in the original list.
 \end{enumerate}
@@ -242,7 +242,7 @@ remainder when divided by $m$ \autocite[278]{haese_ib_options}. Formally:}
 \begin{equation}\label{eq:congr_def_long}
     \begin{gathered}
         a \equiv b \pmod{m} \iff \\
-        \exists\ l,m,r \in \mathbb{Z}: a = qm + r\ and\ b = lm + r
+        \exists\ l,q,r \in \mathbb{Z}: a = qm + r\ and\ b = lm + r
     \end{gathered}
 \end{equation}
 %
@@ -397,19 +397,19 @@ Suppose two of them $ka,\ la: 1\leq k < l \leq (p-1)$ are congruent modulo $p$, 
 %
 \begin{align*}
           ka &\equiv la \pmod{p}\\
-    \iff  k  &\equiv l  \pmod{p} &&\text{since $p$ prime and $p \not| a$}
+    \iff  k  &\equiv l  \pmod{p}, \text{ by the cancellation laws, since $p$ prime and $p \not| a$}
 \end{align*}
 %
-But the integers in $[0, (p-1)]$ form a complete residue system modulo $p$, and  $1
-\leq k<l \leq (p-1)$, meaning that $k \not\equiv l \pmod p$, and therefore leads to a
+But the integers in $[0, (p-1)]$ form a complete residue system modulo $p$, and  $k,l \in
+[0, (p-1)]$, $k\not=l$ meaning that $k \not\equiv l \pmod p$, which leads to a
 contradiction. Therefore,
 %
 \begin{equation*}
     ka \not\equiv la \pmod{p}\qquad \forall\ k,l \in [0, (p-1)], k \not= l
 \end{equation*}
 %
-So, $0...(p-1)a$ are all incongruent to each other and so must be, in some order,
-congruent to the least residue system modulo $p$, i.e.  $0...(p-1)$
+So, $0a...(p-1)a$ are all incongruent to each other and so must be, in some order,
+congruent to the least residue system modulo $p$, i.e.  $0...(p-1)$. Therefore:
 %
 \begin{align*}
     a(2a)...(p-1)a &\equiv 1\times 2\times 3...\times (p-1) \pmod{p}\\
@@ -501,7 +501,7 @@ Moreover, \emph{if $p$ and $q$ are two coprime integers, then $\phi(pq) = \phi(p
 \phi(q)$}\autocite[107]{dence}
 
 Euler's Theorem provides an extension of Fermat's Little Theorem, to the case where the
-modulus m is composite. Its proof requires knowledge of abstract algebra and therefore is
+modulus $m$ is composite. Its proof requires knowledge of abstract algebra and therefore is
 outside the scope of this essay.
 %
 \begin{theorem}[Euler's Theorem]
@@ -597,11 +597,13 @@ that
     M^{ed}  &\equiv M \pmod{n}
 \end{align*}
 %
-From how we have defined our keys we also have the following assumptions:
+\vspace{1cm}
+From how we have defined our keys we also have the following assumptions: 
+\vspace{-1cm}
 %
 \begin{enumerate}
     \item $p,q\ \text{prime}$
-    \item $n = p \cdot q$
+    \item $n = p \times q$
     \item $\gcd(e, \phi(n)) = 1$ 
     \item $ed \equiv 1 \pmod{n}$
 \end{enumerate}
@@ -619,14 +621,14 @@ $ed \equiv 1 \pmod{\phi(n)}$ can be restated as $ed = 1 + k\phi(n)$, for some $k
 %
 \begin{align*}
     M^{ed} &\equiv M^{1 + k\phi(n)} \pmod{n} \\
-           &\equiv M \cdot (M^{\phi(n)})^k  \pmod{n} \\
-           &\equiv M \cdot 1^k \pmod{n} \\
+           &\equiv M \times (M^{\phi(n)})^k  \pmod{n} \\
+           &\equiv M \times 1^k \pmod{n} \\
            &\equiv M \pmod{n}
 \end{align*}
 %
 So the encryption scheme works in the first case
 
-In the second case, there are only two sub cases, since $n = p \cdot q$ where $p, q$ are
+In the second case, there are only two sub cases, since $n = p \times q$ where $p, q$ are
 both prime, and $ M \in \left[0, n-1\right]$
 %
 \renewcommand{\labelenumi}{2\alph{enumi}.}
@@ -689,7 +691,8 @@ The first necessary step is generating the two primes \pmb{$p$} and \pmb{$q$} th
 basis of the key. There are a number of processes for generating (pseudo-)random numbers
 which are outside the scope of this essay. In order to generate a random prime number, one
 would use such a technique to generate an odd random number and test it for primality.  If
-it is not prime increment by two and repeat until a prime number is found:
+it is not prime increment by two (to skip even numbers) and repeat until a prime number is
+found:
 %
 \begin{figure}[H]
     \begin{tikzpicture}[->, >=stealth, thick, main node/.style={rectangle, draw,
@@ -716,14 +719,14 @@ prime. Examples of such tests include the Fermat, AKS, and Miller-Rabin
 tests\autocite{primality_akalin}. The simplest of these is the Fermat test --- which has
 been explained in \autoref{sec:fermat} --- 
 
-Then \pmb{$n$} is computed as the product of $p$ and $q$. $$n=p \cdot q$$
+Then \pmb{$n$} is computed as the product of $p$ and $q$. $$n=p \times q$$
 
 Finally, \pmb{$k$} is chosen to be an odd random integer, relatively prime to $\phi(n)$,
-since $n=p \cdot q$ and $p,q$ prime, $\phi(n) = \phi(p \cdot q) = \phi(p) \cdot \phi(q) =
-(p-1) \cdot (q-1)$. So, 
+since $n=p \times q$ and $p,q$ prime, $\phi(n) = \phi(p \times q) = \phi(p) \times \phi(q) =
+(p-1) \times (q-1)$. So, 
 %
 \begin{equation*}
-    \gcd(k, (p-1) \cdot (q-1)) = 1
+    \gcd(k, (p-1) \times (q-1)) = 1
 \end{equation*}
 %
 
@@ -746,7 +749,7 @@ count the integers less than $n$ whose greatest common divisor with $n$ is 1. Ev
 modern supercomputers and various optimisations, with $n$ being in the neighborhood of
 $2^{512}$ to $2^{1024}$ for modern applications of RSA, this would take hundreds of years
 \autocite{prime_factorisation}. The alternative is factoring $n$ to find $p$ and $q$, and
-compute $\phi(n)$ as $\phi(p) \cdot \phi(q) = (p-1) \cdot (q-1)$. But again, because of the
+compute $\phi(n)$ as $\phi(p) \times \phi(q) = (p-1) \times (q-1)$. But again, because of the
 size of $n$, this would --- in the best case --- take a few hundred years. Therefore, with
 current methods and as long as the possible attacker doesn't directly steal the private key
 from where it is stored, RSA is completely secure.
